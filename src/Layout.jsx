@@ -7,13 +7,13 @@ import style from './styles/layout.module.css'
 export class Layout extends React.Component {
   render () {
     return (
-    <div className={style.layout}>
-      <Header setLang={this.props.setLang} />
-      <div>
-        <Outlet />
+      <div className={style.layout}>
+        <Header setLang={this.props.setLang} />
+        <div>
+          <Outlet />
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
     )
   }
 }

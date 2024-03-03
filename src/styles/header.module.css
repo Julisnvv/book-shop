@@ -1,0 +1,40 @@
+@import url('fonts.module.css');
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  padding: 0 10px;
+}
+
+.line{
+  width: 100%;
+  height: 2px;
+  background-color: #E7E7E7;
+  margin-bottom: 30px;
+}
+
+.logo {
+  font-size: 30px;
+  font-weight: bold;
+  font-family: "Bebas Neue", sans-serif;
+}
+
+.userMenu{
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.icon{
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+}
+
+.select{
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}

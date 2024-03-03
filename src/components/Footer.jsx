@@ -1,5 +1,13 @@
+import style from '../styles/footer.module.css'
+
 export function Footer () {
   return (
-    <div>Footer</div>
+    <>
+      <div className={style.line}></div>
+      <div className={style.footer}>
+        <p>© 2022 Bookstore</p>
+        <p>All rights reserved</p>
+      </div>
+    </>
   )
 }

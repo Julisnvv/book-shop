@@ -1,0 +1,53 @@
+@import url('fonts.module.css');
+
+.menuContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.imageMenu {
+  cursor: pointer;
+}
+
+.content {
+  position: absolute;
+  top: 20px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(126, 126, 126, 0.9);
+  border: 1px solid white;
+  width: 170px;
+  height: 0;
+  margin: 10px;
+  padding: 5px;
+  font-size: 18px;
+  opacity: 0;
+  transition: opacity 0.3s ease, height 0.3s ease;
+  overflow: hidden;
+  gap: 10px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.menuContainer:hover .content{
+  opacity: 1;
+  height: 300px;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.link:hover {
+  color: #3f3f3f;
+}
+
+.link:active {
+  color: #000000;
+}

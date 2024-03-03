@@ -3,14 +3,14 @@ import { languages } from '../config/languages/index.js'
 import { Pagination } from '../components/Pagination'
 import { Title } from '../components/Title'
 
-export function MainPage () {
+export function BasketPage () {
   // Hooks
   const language = useSelector(state => state.language.value)
 
   // Template
   return (
     <div>
-      <Title name={languages[language].mainPage.title} />
+      <Title name={languages[language].basketPage.title} />
       <Pagination />
     </div>
   )

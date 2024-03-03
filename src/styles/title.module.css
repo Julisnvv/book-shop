@@ -1,0 +1,7 @@
+@import url('fonts.module.css');
+
+.title{
+  color: black;
+  font-size: 48px;
+  font-family: "Bebas Neue", sans-serif;
+}
