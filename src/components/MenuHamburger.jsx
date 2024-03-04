@@ -45,6 +45,9 @@ function MenuContent (props) {
       <NavLink to="/" className={style.link} onClick={handleLinkClick}>
         {languages[language].menuHamburger.mainPage}
       </NavLink>
+      <NavLink to="/books" className={style.link} onClick={handleLinkClick}>
+        {languages[language].menuHamburger.booksPage}
+      </NavLink>
       <NavLink to="/favorite" className={style.link} onClick={handleLinkClick}>
         {languages[language].menuHamburger.favoritePage}
       </NavLink>

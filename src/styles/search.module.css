@@ -18,6 +18,11 @@
   height: 30px;
 }
 
+.button:hover{
+  transition: background-color 0.3s ease;
+  background-color: #e2dfdf;
+}
+
 .button:active{
   background-color:#d5d5d5;
 }

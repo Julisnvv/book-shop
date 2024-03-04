@@ -1,6 +1,9 @@
 export const en = {
   mainPage: {
-    title: 'Book Store'
+    title: 'New Releases Book'
+  },
+  booksPage: {
+    title: 'Book Catalog'
   },
   favoritePage: {
     title: 'Favorite'
@@ -9,7 +12,8 @@ export const en = {
     title: 'Basket'
   },
   menuHamburger: {
-    mainPage: 'Book Store',
+    mainPage: 'New items',
+    booksPage: 'Book catalog',
     favoritePage: 'Favorite',
     basketPage: 'Basket'
   }
