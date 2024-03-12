@@ -5,6 +5,7 @@ import { BooksPage } from './pages/BooksPage'
 import { BookPage } from './pages/BookPage'
 import { FavoritePage } from './pages/FavoritePage'
 import { BasketPage } from './pages/BasketPage'
+import { SearchResult } from './pages/SearchResult'
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
       {
         path: '/basket',
         element: <BasketPage />
+      },
+      {
+        path: '/search/:query',
+        element: <SearchResult />
       }
     ]
   }
