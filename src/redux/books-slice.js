@@ -1,16 +1,16 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { requestBooks } from '../services/books'
+import { requestNewBooks } from '../services/books'
 
-export const fetchData = createAsyncThunk(
-  'books/fetchData',
+export const fetchNewData = createAsyncThunk(
+  'books/fetchNewData',
   async () => {
-    const data = await requestBooks()
+    const data = await requestNewBooks()
     return data
   }
 )
 
 const initialState = {
-  data: []
+  newData: []
 }
 
 export const booksSlice = createSlice({
@@ -19,8 +19,8 @@ export const booksSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchData.fulfilled, (state, action) => {
-        state.data = action.payload.books.map((book) => ({
+      .addCase(fetchNewData.fulfilled, (state, action) => {
+        state.newData = action.payload.books.map((book) => ({
           ...book
         }))
       })

@@ -1,4 +1,4 @@
 // Books
-const booksEndpoint = '/new'
+const newBooksEndpoint = '/new'
 
-export { booksEndpoint }
+export { newBooksEndpoint }

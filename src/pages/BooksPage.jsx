@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux'
 import { languages } from '../config/languages/index.js'
 import { Title } from '../components/Title'
+import { CardList } from '../components/CardList'
 
 export function BooksPage () {
   // Hooks
@@ -10,6 +11,7 @@ export function BooksPage () {
   return (
     <div>
       <Title name={languages[language].booksPage.title} />
+      <CardList />
     </div>
   )
 }

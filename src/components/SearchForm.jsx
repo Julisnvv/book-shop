@@ -13,7 +13,7 @@ export function SearchForm () {
   const handleSubmit = (event) => {
     event.preventDefault()
     setQuery('')
-    navigate(`/posts/search/${query}`)
+    navigate(`/search/${query}`)
   }
 
   const handleChange = (event) => {

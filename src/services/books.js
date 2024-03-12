@@ -1,7 +1,7 @@
-import { booksEndpoint } from '../api.js'
+import { newBooksEndpoint } from '../api.js'
 import { client } from '../utils/client.js'
 
-export const requestBooks = async (params) => {
-  const { data } = await client.get(booksEndpoint, { params })
+export const requestNewBooks = async (params) => {
+  const { data } = await client.get(newBooksEndpoint, { params })
   return data
 }
