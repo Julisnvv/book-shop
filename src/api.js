@@ -2,6 +2,6 @@
 const newBooksEndpoint = '/new'
 
 // Search
-const searchBooksEndpoint = '/search/:query'
+const searchBooksEndpoint = '/search/'
 
 export { newBooksEndpoint, searchBooksEndpoint }

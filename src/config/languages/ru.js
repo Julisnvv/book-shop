@@ -11,6 +11,9 @@ export const ru = {
   basketPage: {
     title: 'Корзина'
   },
+  searchPage: {
+    title: 'Результат поиска'
+  },
   menuHamburger: {
     mainPage: 'Новинки',
     booksPage: 'Каталог книг',

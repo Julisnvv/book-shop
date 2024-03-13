@@ -11,6 +11,9 @@ export const en = {
   basketPage: {
     title: 'Basket'
   },
+  searchPage: {
+    title: 'Search result'
+  },
   menuHamburger: {
     mainPage: 'New items',
     booksPage: 'Book catalog',

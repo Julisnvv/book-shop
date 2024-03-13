@@ -16,6 +16,7 @@ export const fetchSearchData = createAsyncThunk(
     const { limit } = getState().books
     const offset = (pageNumber - 1) * limit
     return await requestSearchBooks({ search, limit, offset })
+    // return await requestSearchBooks({ search, page: pageNumber, limit, offset })
   }
 )
 
@@ -38,11 +39,9 @@ export const booksSlice = createSlice({
         }))
       })
       .addCase(fetchSearchData.fulfilled, (state, action) => {
-        console.log(action.payload)
         state.searchData = action.payload.books.map((book) => ({
           ...book
         }))
-        console.log(state.searchData)
         if (state.pagesCounter) return
         state.pagesCounter = Math.ceil(action.payload.count / state.limit)
       })

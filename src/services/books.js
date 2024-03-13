@@ -7,6 +7,6 @@ export const requestNewBooks = async (params) => {
 }
 
 export const requestSearchBooks = async (params) => {
-  const { data } = await client.get(searchBooksEndpoint, { params })
+  const { data } = await client.get(searchBooksEndpoint + params.search, { params })
   return data
 }

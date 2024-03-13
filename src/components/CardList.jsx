@@ -14,7 +14,7 @@ export function CardList () {
   }, [dispatch])
 
   if (!Array.isArray(books) || books.length === 0) {
-    return <div>Loading...</div>
+    return <div className={style.poppins}>Loading...</div>
   }
 
   // Template
