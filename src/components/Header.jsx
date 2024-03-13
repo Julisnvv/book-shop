@@ -20,7 +20,9 @@ export function Header () {
   return (
     <>
       <div className={style.header}>
-        <p className={style.logo}>BOOKSTORE</p>
+        <NavLink to='/' style={{ textDecoration: 'none' }}>
+          <p className={style.logo}>BOOKSTORE</p>
+        </NavLink>
         <SearchForm />
         <div className={style.userMenu}>
           <NavLink to="/favorite">

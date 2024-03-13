@@ -2,9 +2,6 @@ export const ru = {
   mainPage: {
     title: 'Новые релизы книг'
   },
-  booksPage: {
-    title: 'Каталог книг'
-  },
   favoritePage: {
     title: 'Избранное'
   },
@@ -15,8 +12,7 @@ export const ru = {
     title: 'Результат поиска'
   },
   menuHamburger: {
-    mainPage: 'Новинки',
-    booksPage: 'Каталог книг',
+    mainPage: 'Каталог книг',
     favoritePage: 'Избранное',
     basketPage: 'Корзина'
   }

@@ -1,7 +1,10 @@
-// Books
+// New Books
 const newBooksEndpoint = '/new'
 
 // Search
 const searchBooksEndpoint = '/search/'
 
-export { newBooksEndpoint, searchBooksEndpoint }
+// Book
+const bookEndpoint = '/books/'
+
+export { newBooksEndpoint, searchBooksEndpoint, bookEndpoint }

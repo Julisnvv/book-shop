@@ -1,26 +1,5 @@
 @import url('fonts.module.css');
 
-.button{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #E7E7E7;
-  border: 2px solid #d5d5d5;
-  cursor: pointer;
-  width: 80px;
-  height: 30px;
-  font-family: "Poppins", sans-serif;
-}
-
-.button:hover{
-  transition: background-color 0.3s ease;
-  background-color: #d1cfcf;
-}
-
-.button:active{
-  background-color:#d5d5d5;
-}
-
 .modalOverlay {
   position: fixed;
   top: 0;
