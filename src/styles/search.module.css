@@ -67,6 +67,10 @@
   text-decoration: none;
 }
 
+.cardTitle:hover{
+  text-decoration: underline;
+}
+
 .titleContainer{
   display: flex;
   width: 100%;

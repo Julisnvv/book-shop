@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { setImage } from '../redux/image-preview-slice'
-import { Modal } from '../components/Modal'
+import { Modal } from './Modal'
 import style from '../styles/card.module.css'
 
 export function Card (props) {

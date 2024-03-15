@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useParams, NavLink } from 'react-router-dom'
 import { languages } from '../config/languages/index.js'
 import { fetchSearchData } from '../redux/books-slice'
 import noResult from '../img/no-result.svg'
@@ -33,11 +33,13 @@ export function SearchResult () {
             <img
               src={book.image}
               alt='book'
-              style={{ width: '100%', height: '100%', cursor: 'pointer' }}
+              style={{ width: '100%', height: '100%' }}
             />
           </div>
           <div className={style.titleContainer}>
+          <NavLink to={`/books/${book.isbn13}`} style={{ textDecoration: 'none' }}>
             <p className={style.cardTitle}>{book.title}</p>
+          </NavLink>
           </div>
           <div className={style.infoContainer}>
             <p className={style.poppins}>{book.isbn13}</p>
