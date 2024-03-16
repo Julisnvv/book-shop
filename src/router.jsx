@@ -4,7 +4,7 @@ import { MainPage } from './pages/MainPage'
 import { BookPage } from './pages/BookPage'
 import { FavoritePage } from './pages/FavoritePage'
 import { BasketPage } from './pages/BasketPage'
-import { SearchResult } from './pages/SearchResult'
+import { SearchResultPage } from './pages/SearchResultPage'
 
 export const router = createBrowserRouter([
   {
@@ -28,7 +28,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/search/:query',
-        element: <SearchResult />
+        element: <SearchResultPage />
       }
     ]
   }

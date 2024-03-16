@@ -6,7 +6,8 @@ export const ru = {
     title: 'Избранное',
     emptyText: 'В избранном нет книг...',
     buttonDelAll: 'Очистить избранное',
-    totalCountText: 'Общее количество:'
+    totalCountText: 'Общее количество:',
+    readMore: 'Узнать больше'
   },
   basketPage: {
     title: 'Корзина',

@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { languages } from '../config/languages/index.js'
+import { handleFavoriteDelete, handleFavoriteDeleteAll, handleAddToBasket } from '../helpers/localStorage.js'
 import { Title } from '../components/Title'
-import close from '../img/cross.svg'
-import basket from '../img/in-basket.svg'
-import empty from '../img/no-result.svg'
+import { FavoriteBook } from '../components/FavoriteBook'
+import { EmptyContent } from '../components/EmptyContent'
 import style from '../styles/favoriteAndBasket.module.css'
 
 export function FavoritePage () {
@@ -19,30 +19,15 @@ export function FavoritePage () {
 
   // Methods
   function handleDeleteClick (isbn13) {
-    const localStorageKey = `favoriteBook_${isbn13}`
-    localStorage.removeItem(localStorageKey)
-    setDeletedBooks([...deletedBooks, isbn13])
+    handleFavoriteDelete(isbn13, setDeletedBooks)
   }
 
   function handleDeleteAllClick () {
-    const favoriteBookKeys = Object.keys(localStorage).filter(key =>
-      key.startsWith('favoriteBook_')
-    )
-    favoriteBookKeys.forEach(key => {
-      localStorage.removeItem(key)
-    })
-    setDeletedBooks(favoriteBookKeys.map(key => key.replace('favoriteBook_', '')))
+    handleFavoriteDeleteAll(setDeletedBooks)
   }
 
   function handleAddToBasketClick (isbn13) {
-    const favoriteLocalStorageKey = `favoriteBook_${isbn13}`
-    const basketLocalStorageKey = `basketBook_${isbn13}`
-    const book = JSON.parse(localStorage.getItem(favoriteLocalStorageKey))
-
-    localStorage.removeItem(favoriteLocalStorageKey)
-    localStorage.setItem(basketLocalStorageKey, JSON.stringify(book))
-
-    setDeletedBooks([...deletedBooks, isbn13])
+    handleAddToBasket(isbn13, setDeletedBooks)
   }
 
   // Template
@@ -51,10 +36,7 @@ export function FavoritePage () {
       <Title name={languages[language].favoritePage.title} />
       {favoriteBooks.length === 0
         ? (
-        <div className={style.emptyContainer}>
-          <img src={empty} alt="empty" style={{ width: '80px', height: '80px' }} />
-          <p className={style.p}>{languages[language].favoritePage.emptyText}</p>
-        </div>
+          <EmptyContent text={languages[language].favoritePage.emptyText} />
           )
         : (
       <div>
@@ -63,47 +45,19 @@ export function FavoritePage () {
           <button onClick={() => handleDeleteAllClick()} className={style.button}>{languages[language].favoritePage.buttonDelAll}</button>
         </div>
         <div className={style.line}></div>
-      {favoriteBooks.map(book => {
-        if (deletedBooks.includes(book.isbn13)) {
-          return null
-        }
-        return (
-            <div key={book.isbn13}>
-              <div className={style.book}>
-                <div className={style.imageContainer}>
-                  <img src={book.image} alt="book" />
-                </div>
-                <div className={style.mainContainer}>
-                  <div className={style.titleContainer}>
-                    <p className={style.h} style={{ fontSize: '23px' }}>{book.title}</p>
-                    <p className={style.p}>{book.subtitle}</p>
-                  </div>
-                  <div className={style.infoContainer}>
-                    <p className={style.p}>Authors: {book.authors}</p>
-                    <p className={style.p}>Pages: {book.pages}</p>
-                    <p className={style.p}>Year: {book.year}</p>
-                    <p className={style.p}>Rating: {book.rating}</p>
-                  </div>
-                  <p className={style.h} style={{ fontSize: '23px' }}>{book.price}</p>
-                </div>
-                <div className={style.iconContainer}>
-                  <img
-                    className={style.close}
-                    src={close} alt="close"
-                    onClick={() => handleDeleteClick(book.isbn13)}
-                    style={{ width: '30px', height: '30px', cursor: 'pointer' }}
-                  />
-                  <img
-                    className={style.basket}
-                    src={basket} alt="basket"
-                    onClick={() => handleAddToBasketClick(book.isbn13)}
-                    style={{ width: '30px', height: '30px', cursor: 'pointer', marginBottom: '30px' }} />
-                </div>
-              </div>
-              <div className={style.line}></div>
-            </div>
-        )
-      })}
+        {favoriteBooks.map(book => {
+          if (deletedBooks.includes(book.isbn13)) {
+            return null
+          }
+          return (
+            <FavoriteBook
+              key={book.isbn13}
+              book={book}
+              handleDeleteClick={handleDeleteClick}
+              handleAddToBasketClick={handleAddToBasketClick}
+            />
+          )
+        })}
       </div>
           )}
     </div>

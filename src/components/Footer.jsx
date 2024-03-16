@@ -1,6 +1,7 @@
 import style from '../styles/footer.module.css'
 
 export function Footer () {
+  // Template
   return (
     <>
       <div className={style.line}></div>

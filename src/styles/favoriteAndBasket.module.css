@@ -11,19 +11,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 45%;
-  height: 300px;
+  width: 25%;
+  height: 280px;
   background-color: #E7E7E7;
-  margin-bottom: 20px;
-  margin-right: 40px;
+  margin: 0 40px 10px 0;
 }
 
 .mainContainer{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 55%;
-  height: 300px;
+  width: 70%;
+  height: 280px;
 }
 
 .titleContainer{
@@ -85,3 +84,13 @@
   transition: background-color 0.3s ease;
 }
 
+.readMore{
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  color: black;
+}
+
+.readMore:hover{
+  text-decoration: underline;
+}

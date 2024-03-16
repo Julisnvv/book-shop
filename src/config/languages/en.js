@@ -6,7 +6,8 @@ export const en = {
     title: 'Favorite',
     emptyText: 'Your favorite is empty...',
     buttonDelAll: 'Clear Favorite',
-    totalCountText: 'Total amount:'
+    totalCountText: 'Total amount:',
+    readMore: 'Find out more'
   },
   basketPage: {
     title: 'Basket',
