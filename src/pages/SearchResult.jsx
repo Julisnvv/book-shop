@@ -23,7 +23,7 @@ export function SearchResult () {
   // Methods
   function renderSearchBooks () {
     if (isLoading) {
-      return <div className={style.poppins}>Wait...</div>
+      return <div className={style.poppins}>{languages[language].searchPage.loadingText}</div>
     }
 
     if (searchData.length) {
@@ -51,7 +51,7 @@ export function SearchResult () {
 
     return (
       <div className={style.noResult}>
-        <p className={style.poppins}>No result... Try again</p>
+        <p className={style.poppins}>{languages[language].searchPage.emptyText}</p>
         <img src={noResult} alt='no result' style={{ width: '80px', height: '80px' }}/>
       </div>
     )

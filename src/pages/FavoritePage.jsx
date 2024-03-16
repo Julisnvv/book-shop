@@ -3,8 +3,9 @@ import { useSelector } from 'react-redux'
 import { languages } from '../config/languages/index.js'
 import { Title } from '../components/Title'
 import close from '../img/cross.svg'
-import basket from '../img/basket.svg'
-import style from '../styles/favorite.module.css'
+import basket from '../img/in-basket.svg'
+import empty from '../img/no-result.svg'
+import style from '../styles/favoriteAndBasket.module.css'
 
 export function FavoritePage () {
   // Hooks
@@ -23,14 +24,48 @@ export function FavoritePage () {
     setDeletedBooks([...deletedBooks, isbn13])
   }
 
+  function handleDeleteAllClick () {
+    const favoriteBookKeys = Object.keys(localStorage).filter(key =>
+      key.startsWith('favoriteBook_')
+    )
+    favoriteBookKeys.forEach(key => {
+      localStorage.removeItem(key)
+    })
+    setDeletedBooks(favoriteBookKeys.map(key => key.replace('favoriteBook_', '')))
+  }
+
+  function handleAddToBasketClick (isbn13) {
+    const favoriteLocalStorageKey = `favoriteBook_${isbn13}`
+    const basketLocalStorageKey = `basketBook_${isbn13}`
+    const book = JSON.parse(localStorage.getItem(favoriteLocalStorageKey))
+
+    localStorage.removeItem(favoriteLocalStorageKey)
+    localStorage.setItem(basketLocalStorageKey, JSON.stringify(book))
+
+    setDeletedBooks([...deletedBooks, isbn13])
+  }
+
   // Template
   return (
     <div>
       <Title name={languages[language].favoritePage.title} />
+      {favoriteBooks.length === 0
+        ? (
+        <div className={style.emptyContainer}>
+          <img src={empty} alt="empty" style={{ width: '80px', height: '80px' }} />
+          <p className={style.p}>{languages[language].favoritePage.emptyText}</p>
+        </div>
+          )
+        : (
       <div>
+        <div className={style.buttonContainer}>
+          <p>{languages[language].favoritePage.totalCountText} {favoriteBooks.length}</p>
+          <button onClick={() => handleDeleteAllClick()} className={style.button}>{languages[language].favoritePage.buttonDelAll}</button>
+        </div>
+        <div className={style.line}></div>
       {favoriteBooks.map(book => {
         if (deletedBooks.includes(book.isbn13)) {
-          return null // Пропустить отображение удаленной книги
+          return null
         }
         return (
             <div key={book.isbn13}>
@@ -58,7 +93,11 @@ export function FavoritePage () {
                     onClick={() => handleDeleteClick(book.isbn13)}
                     style={{ width: '30px', height: '30px', cursor: 'pointer' }}
                   />
-                  <img className={style.basket} src={basket} alt="basket" style={{ width: '30px', height: '30px', cursor: 'pointer', marginBottom: '30px' }} />
+                  <img
+                    className={style.basket}
+                    src={basket} alt="basket"
+                    onClick={() => handleAddToBasketClick(book.isbn13)}
+                    style={{ width: '30px', height: '30px', cursor: 'pointer', marginBottom: '30px' }} />
                 </div>
               </div>
               <div className={style.line}></div>
@@ -66,6 +105,7 @@ export function FavoritePage () {
         )
       })}
       </div>
+          )}
     </div>
   )
 }

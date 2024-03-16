@@ -4,7 +4,7 @@ import { setLanguage } from '../redux/language-slice'
 import { SearchForm } from './SearchForm'
 import { MenuHamburger } from './MenuHamburger'
 import favorite from '../img/favorite.svg'
-import basket from '../img/basket.svg'
+import basket from '../img/in-basket.svg'
 import style from '../styles/header.module.css'
 
 export function Header () {

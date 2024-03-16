@@ -46,3 +46,42 @@
   background-color: #E7E7E7;
   margin: 20px 0 30px;
 }
+
+.emptyContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  font-size: 18px;
+  margin: 20px 0 200px;
+}
+
+.buttonContainer{
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.totalContainer{
+  display: flex;
+  gap: 50px;
+}
+
+.button{
+  width: 200px;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  background-color: #E7E7E7;
+  border: 2px solid #d5d5d5;
+  height: 30px;
+  cursor: pointer;
+}
+
+.button:hover{
+  background-color: #d5d5d5;
+  border: 2px solid #E7E7E7;
+  transition: background-color 0.3s ease;
+}
+

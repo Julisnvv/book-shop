@@ -6,6 +6,8 @@ import { setImage } from '../redux/image-preview-slice'
 import { Modal } from './Modal'
 import basket from '../img/basket.svg'
 import favorite from '../img/favorite.svg'
+import inFavorite from '../img/in-favorite.svg'
+import inBasket from '../img/in-basket.svg'
 import style from '../styles/book.module.css'
 
 export function Book () {
@@ -14,10 +16,22 @@ export function Book () {
   const dispatch = useDispatch()
   const book = useSelector((state) => state.books.singleData)
   const [isOpen, setIsOpen] = useState(false)
+  const [isFavorite, setIsFavorite] = useState(false)
+  const [isBasket, setIsBasket] = useState(false)
 
   useEffect(() => {
     dispatch(fetchSingleData(isbn13))
   }, [dispatch, isbn13])
+
+  useEffect(() => {
+    const localStorageKey = `favoriteBook_${book.isbn13}`
+    const isBookInFavorites = localStorage.getItem(localStorageKey) !== null
+    setIsFavorite(isBookInFavorites)
+
+    const basketLocalStorageKey = `basketBook_${book.isbn13}`
+    const isBookInBasket = localStorage.getItem(basketLocalStorageKey) !== null
+    setIsBasket(isBookInBasket)
+  }, [book.isbn13])
 
   // Methods
   function toggle () {
@@ -30,13 +44,23 @@ export function Book () {
   }
 
   function handleFavoriteClick () {
-    const localStorageKey = `favoriteBook_${book.isbn13}`
-    localStorage.setItem(localStorageKey, JSON.stringify(book))
+    const favoriteLocalStorageKey = `favoriteBook_${book.isbn13}`
+    if (isFavorite) {
+      localStorage.removeItem(favoriteLocalStorageKey)
+    } else {
+      localStorage.setItem(favoriteLocalStorageKey, JSON.stringify(book))
+    }
+    setIsFavorite(!isFavorite)
   }
 
   function handleBasketClick () {
-    const localStorageKey = `basketBook_${book.isbn13}`
-    localStorage.setItem(localStorageKey, JSON.stringify(book))
+    const basketLocalStorageKey = `basketBook_${book.isbn13}`
+    if (isBasket) {
+      localStorage.removeItem(basketLocalStorageKey)
+    } else {
+      localStorage.setItem(basketLocalStorageKey, JSON.stringify(book))
+    }
+    setIsBasket(!isBasket)
   }
 
   // Template
@@ -68,8 +92,18 @@ export function Book () {
             <div className={style.basket}>
               <p className={style.h} style={{ fontSize: '26px' }}>{book.price}</p>
               <div className={style.icons}>
-                <img src={favorite} alt="favorite" style={{ width: '30px', height: '30px', cursor: 'pointer' }} onClick={handleFavoriteClick} />
-                <img src={basket} alt="basket" style={{ width: '30px', height: '30px', cursor: 'pointer' }} onClick={handleBasketClick} />
+                <img
+                  src={isFavorite ? inFavorite : favorite}
+                  alt="favorite"
+                  style={{ width: '30px', height: '30px', cursor: 'pointer' }}
+                  onClick={handleFavoriteClick}
+                />
+                <img
+                  src={isBasket ? inBasket : basket}
+                  alt="basket"
+                  style={{ width: '35px', height: '35px', cursor: 'pointer' }}
+                  onClick={handleBasketClick}
+                />
               </div>
             </div>
           </div>

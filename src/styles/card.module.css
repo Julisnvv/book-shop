@@ -45,6 +45,12 @@
   justify-content: space-between;
 }
 
+.iconContainer{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
 .bebas{
   font-family: "Bebas Neue", sans-serif;
   font-size: 24px;
