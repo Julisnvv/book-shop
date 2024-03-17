@@ -6,14 +6,17 @@ import style from '../styles/search.module.css'
 export function SearchForm () {
   // Hooks
   const { query: queryCurrent } = useParams()
+  const { page: pageCurrent } = useParams()
   const [query, setQuery] = useState(queryCurrent)
+  const [page, setPage] = useState(pageCurrent)
   const navigate = useNavigate()
 
   // Methods
   const handleSubmit = (event) => {
     event.preventDefault()
+    navigate(`/search/${query}/${page}`)
     setQuery('')
-    navigate(`/search/${query}`)
+    setPage(1)
   }
 
   const handleChange = (event) => {

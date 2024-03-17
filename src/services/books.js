@@ -7,7 +7,8 @@ export const requestNewBooks = async (params) => {
 }
 
 export const requestSearchBooks = async (params) => {
-  const { data } = await client.get(searchBooksEndpoint + params.search, { params })
+  const { search, page } = params
+  const { data } = await client.get(searchBooksEndpoint + `${search}/${page}`, { params })
   return data
 }
 

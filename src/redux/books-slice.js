@@ -12,11 +12,11 @@ export const fetchNewData = createAsyncThunk(
 export const fetchSearchData = createAsyncThunk(
   'books/fetchSearchData',
   async (opts = {}, { getState }) => {
-    const { search, pageNumber = 1 } = opts
+    const { search, page = 1 } = opts
     const { limit } = getState().books
-    const offset = (pageNumber - 1) * limit
-    return await requestSearchBooks({ search, limit, offset })
-    // return await requestSearchBooks({ search, page: pageNumber, limit, offset })
+    const offset = (page - 1) * limit
+    const data = await requestSearchBooks({ search, page, limit, offset })
+    return data
   }
 )
 
@@ -32,7 +32,7 @@ const initialState = {
   newData: [],
   searchData: [],
   singleData: {},
-  limit: 25,
+  limit: 9,
   pagesCounter: 0
 }
 
@@ -52,7 +52,7 @@ export const booksSlice = createSlice({
           ...book
         }))
         if (state.pagesCounter) return
-        state.pagesCounter = Math.ceil(action.payload.count / state.limit)
+        state.pagesCounter = Math.ceil(action.payload.total / state.limit)
       })
       .addCase(fetchSingleData.fulfilled, (state, action) => {
         state.singleData = action.payload

@@ -1,7 +1,10 @@
-import { NavLink } from 'react-router-dom'
+import { useParams, NavLink } from 'react-router-dom'
 import style from '../styles/pagination.module.css'
 
 export function Pagination ({ pageNumberCurrent, pagesCounter, activePage }) {
+  // Hooks
+  const { query } = useParams()
+
   // Methods
   function buildPaginationScheme () {
     const prevPageNumber = +pageNumberCurrent - 1
@@ -20,11 +23,11 @@ export function Pagination ({ pageNumberCurrent, pagesCounter, activePage }) {
   function renderPagination () {
     const paginationScheme = buildPaginationScheme()
 
-    return paginationScheme.map((pageNumber, index) => {
-      if (pageNumber === '...') {
+    return paginationScheme.map((page, index) => {
+      if (page === '...') {
         return (
           <li className={style.pageItem} key={index}>
-            <span className={`${style.pageLink} ${style.peNone}`}>{pageNumber}</span>
+            <span className={`${style.pageLink} ${style.peNone}`}>{page}</span>
           </li>
         )
       }
@@ -32,9 +35,9 @@ export function Pagination ({ pageNumberCurrent, pagesCounter, activePage }) {
       return (
         <li className={style.pageItem} key={index}>
           <NavLink
-            to={`/posts/pages/${pageNumber}`}
-            className={pageNumber === activePage ? `${style.pageLink} ${style.active}` : `${style.pageLink}`}>
-              {pageNumber}
+            to={`/search/${query}/${page}`}
+            className={page === activePage ? `${style.pageLink} ${style.active}` : `${style.pageLink}`}>
+              {page}
           </NavLink>
         </li>
       )

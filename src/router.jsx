@@ -27,7 +27,7 @@ export const router = createBrowserRouter([
         element: <BasketPage />
       },
       {
-        path: '/search/:query',
+        path: '/search/:query/:page',
         element: <SearchResultPage />
       }
     ]
