@@ -5,8 +5,7 @@ import style from '../styles/search.module.css'
 
 export function SearchForm () {
   // Hooks
-  const { query: queryCurrent } = useParams()
-  const { page: pageCurrent } = useParams()
+  const { query: queryCurrent, page: pageCurrent } = useParams()
   const [query, setQuery] = useState(queryCurrent)
   const [page, setPage] = useState(pageCurrent)
   const navigate = useNavigate()
@@ -28,13 +27,17 @@ export function SearchForm () {
     <form onSubmit={handleSubmit} className={style.form}>
       <input
         type="search"
-        placeholder="Search"
+        placeholder="Search..."
         className={style.input}
         value={query}
         onChange={handleChange}
       />
       <button type="submit" className={style.button}>
-        <img src={magnifyingGlass} alt="magnifying glass" style={{ width: '20px', height: '20px' }} />
+        <img
+          src={magnifyingGlass}
+          alt="magnifying glass"
+          style={{ width: '20px', height: '20px' }}
+        />
       </button>
     </form>
   )

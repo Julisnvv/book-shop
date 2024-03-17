@@ -47,7 +47,7 @@ export function Pagination ({ pageNumberCurrent, pagesCounter, activePage }) {
   // Template
   return (
     <nav>
-      <ul className={`${style.pagination} mt-3`}>
+      <ul className={`${style.pagination}`}>
         {renderPagination()}
       </ul>
     </nav>

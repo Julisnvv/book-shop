@@ -1,4 +1,4 @@
-import { newBooksEndpoint, searchBooksEndpoint, bookEndpoint } from '../api.js'
+import { newBooksEndpoint, searchBooksEndpoint, bookEndpoint } from '../utils/api.js'
 import { client } from '../utils/client.js'
 
 export const requestNewBooks = async (params) => {
