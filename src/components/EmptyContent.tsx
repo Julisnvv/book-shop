@@ -1,4 +1,3 @@
-import React from 'react'
 import empty from '../img/no-result.svg'
 import style from '../styles/favoriteAndBasket.module.css'
 

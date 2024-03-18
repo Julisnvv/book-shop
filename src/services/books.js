@@ -1,5 +1,5 @@
-import { newBooksEndpoint, searchBooksEndpoint, bookEndpoint } from '../utils/api.js'
-import { client } from '../utils/client.js'
+import { newBooksEndpoint, searchBooksEndpoint, bookEndpoint } from '../utils/api.ts'
+import { client } from '../utils/client.ts'
 
 export const requestNewBooks = async (params) => {
   const { data } = await client.get(newBooksEndpoint, { params })
