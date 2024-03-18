@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { setLanguage } from '../redux/language-slice'
 import { SearchForm } from './SearchForm'
-import { MenuHamburger } from './MenuHamburger'
+import { Menu } from './Menu'
 import favorite from '../img/favorite.svg'
 import basket from '../img/in-basket.svg'
 import style from '../styles/header.module.css'
@@ -44,7 +44,7 @@ export function Header () {
               <option value="en">English</option>
               <option value="ru">Русский</option>
           </select>
-          <MenuHamburger />
+          <Menu />
         </div>
       </div>
       <div className={style.line}></div>

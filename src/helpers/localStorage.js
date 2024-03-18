@@ -8,6 +8,13 @@ export function checkLocalStorageData (book, setIsFavorite, setIsBasket) {
   setIsBasket(isBookInBasket)
 }
 
+// Favorite
+export function getFavoriteBooks () {
+  return Object.keys(localStorage)
+    .filter(key => key.startsWith('favoriteBook_'))
+    .map(key => JSON.parse(localStorage.getItem(key)))
+}
+
 export function handleFavoriteToggle (book, isFavorite, setIsFavorite) {
   const favoriteLocalStorageKey = `favoriteBook_${book.isbn13}`
   if (isFavorite) {
@@ -18,6 +25,13 @@ export function handleFavoriteToggle (book, isFavorite, setIsFavorite) {
   setIsFavorite(!isFavorite)
 }
 
+// Basket
+export function getBasketBooks () {
+  return Object.keys(localStorage)
+    .filter(key => key.startsWith('basketBook_'))
+    .map(key => JSON.parse(localStorage.getItem(key)))
+}
+
 export function handleBasketToggle (book, isBasket, setIsBasket) {
   const basketLocalStorageKey = `basketBook_${book.isbn13}`
   if (isBasket) {
@@ -26,38 +40,6 @@ export function handleBasketToggle (book, isBasket, setIsBasket) {
     localStorage.setItem(basketLocalStorageKey, JSON.stringify(book))
   }
   setIsBasket(!isBasket)
-}
-
-export function handleFavoriteDelete (isbn13, setDeletedBooks) {
-  const localStorageKey = `favoriteBook_${isbn13}`
-  localStorage.removeItem(localStorageKey)
-  setDeletedBooks(prevDeletedBooks => [...prevDeletedBooks, isbn13])
-}
-
-export function handleFavoriteDeleteAll (setDeletedBooks) {
-  const favoriteBookKeys = Object.keys(localStorage).filter(key =>
-    key.startsWith('favoriteBook_')
-  )
-  favoriteBookKeys.forEach(key => {
-    localStorage.removeItem(key)
-  })
-  setDeletedBooks(favoriteBookKeys.map(key => key.replace('favoriteBook_', '')))
-}
-
-export function handleBasketDelete (isbn13, setDeletedBooks) {
-  const localStorageKey = `basketBook_${isbn13}`
-  localStorage.removeItem(localStorageKey)
-  setDeletedBooks(prevDeletedBooks => [...prevDeletedBooks, isbn13])
-}
-
-export function handleBasketDeleteAll (setDeletedBooks) {
-  const basketBookKeys = Object.keys(localStorage).filter(key =>
-    key.startsWith('basketBook_')
-  )
-  basketBookKeys.forEach(key => {
-    localStorage.removeItem(key)
-  })
-  setDeletedBooks(basketBookKeys.map(key => key.replace('basketBook_', '')))
 }
 
 export function handleAddToBasket (isbn13, setDeletedBooks) {

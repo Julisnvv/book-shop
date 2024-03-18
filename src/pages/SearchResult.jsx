@@ -2,20 +2,20 @@ import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { languages } from '../config/languages/index.js'
-import { fetchSearchData } from '../redux/books-slice.js'
-import { SearchBook } from '../components/SearchBook.jsx'
-import { EmptyContent } from '../components/EmptyContent.jsx'
-import { Pagination } from '../components/Pagination.jsx'
+import { fetchSearchData } from '../redux/books-slice'
+import { Card } from '../components/Card'
+import { EmptyContent } from '../components/EmptyContent'
+import { Pagination } from '../components/Pagination'
 import style from '../styles/search.module.css'
 
 export function SearchResultPage () {
   // Hooks
-  const { query } = useParams()
   const dispatch = useDispatch()
+  const { query } = useParams()
+  const { page: pageNumberCurrent } = useParams()
   const { searchData, pagesCounter } = useSelector((state) => state.books)
   const [isLoading, setIsLoading] = useState(true)
   const language = useSelector(state => state.language.value)
-  const { page: pageNumberCurrent } = useParams()
 
   useEffect(() => {
     setIsLoading(true)
@@ -31,7 +31,7 @@ export function SearchResultPage () {
 
     if (searchData.length) {
       return searchData.map((book) => (
-        <SearchBook key={book.isbn13} book={book} />
+        <Card key={book.isbn13} {...book} />
       ))
     }
 

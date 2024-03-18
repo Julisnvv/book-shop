@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { MenuContent } from './MenuContent.jsx'
+import { MenuContent } from './MenuContent'
 import burgerMenu from '../img/menu-burger.svg'
 import style from '../styles/menu.module.css'
 
-export function MenuHamburger () {
+export function Menu () {
   // Hooks
   const [isOpen, setIsOpen] = useState(false)
 

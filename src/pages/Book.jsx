@@ -13,7 +13,7 @@ export function BookPage () {
 
   // Template
   return (
-    <div>
+    <>
       <img
         src={back}
         alt="back"
@@ -21,6 +21,6 @@ export function BookPage () {
         onClick={handleGoBack}
       />
       <BookProfile />
-    </div>
+    </>
   )
 }

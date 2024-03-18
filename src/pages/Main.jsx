@@ -9,9 +9,9 @@ export function MainPage () {
 
   // Template
   return (
-    <div>
+    <>
       <Title name={languages[language].mainPage.title} />
       <CardList />
-    </div>
+    </>
   )
 }

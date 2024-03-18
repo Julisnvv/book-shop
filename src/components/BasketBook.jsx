@@ -7,7 +7,7 @@ export function BasketBook ({ book, handleDeleteClick }) {
   return (
     <div key={book.isbn13}>
       <div className={style.book}>
-        <BookSelectionTemplate book={book} />
+        <BookSelectionTemplate {...book} />
         <div className={style.iconContainer}>
           <img
             className={style.close}
