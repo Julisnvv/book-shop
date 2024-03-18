@@ -1,6 +1,15 @@
+import React from 'react'
 import style from '../styles/book.module.css'
 
-export function BookInfo (props) {
+interface BookInfoProps {
+  authors: string
+  publisher: string
+  pages: number
+  year: number
+  rating: number
+}
+
+export function BookInfo (props: BookInfoProps) {
   // Template
   return (
     <div className={style.infoContainer}>

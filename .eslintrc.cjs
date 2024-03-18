@@ -3,9 +3,23 @@ module.exports = {
     browser: true,
     es2021: true
   },
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    sourceType: 'module',
+    tsconfigRootDir: './',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    ecmaFeatures: {
+      jsx: true
+    },
+    ecmaVersion: 'latest'
+  },
   extends: [
+    'airbnb',
+    'airbnb-typescript',
+    'airbnb/hooks',
     'eslint:recommended',
     'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
     'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
     'standard'
@@ -15,22 +29,26 @@ module.exports = {
       env: {
         node: true
       },
-      files: [
-        '.eslintrc.{js,cjs}'
-      ],
+      files: ['*.ts', '*.tsx'],
       parserOptions: {
-        sourceType: 'script'
+        tsconfigRootDir: './',
+        project: ['./tsconfig.json']
       }
     }
   ],
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module'
-  },
   plugins: [
-    'react'
+    'react',
+    '@typescript-eslint'
   ],
   rules: {
-    'react/prop-types': 'off'
+    'react/prop-types': 'off',
+    '@typescript-eslint/comma-dangle': 0,
+    'react/jsx-one-expression-per-line': 0,
+    '@typescript-eslint/no-unused-vars': 0,
+    'no-param-reassign': [
+      'error',
+      { props: true, ignorePropertyModificationsFor: ['state'] }
+    ],
+    'react/no-array-index-key': 0
   }
 }

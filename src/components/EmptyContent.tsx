@@ -1,7 +1,12 @@
+import React from 'react'
 import empty from '../img/no-result.svg'
 import style from '../styles/favoriteAndBasket.module.css'
 
-export function EmptyContent (props) {
+interface EmptyContentProps {
+  text: string
+}
+
+export function EmptyContent (props: EmptyContentProps) {
   // Template
   return (
     <div className={style.emptyContainer}>
