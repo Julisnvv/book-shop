@@ -1,26 +1,27 @@
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { languages } from '../config/languages/index.js'
-import { removeBasketBook, removeBasketAllBooks } from '../redux/books-slice'
-import { getBasketBooks } from '../helpers/localStorage'
-import { calculateTotalCost } from '../helpers/calculateCost'
-import { Title } from '../components/Title'
-import { BasketBook } from '../components/BasketBook'
-import { EmptyContent } from '../components/EmptyContent'
+import { languages } from '../config/languages/index.ts'
+import { removeBasketBook, removeBasketAllBooks } from '../redux/books-slice.js'
+import { getBasketBooks } from '../helpers/localStorage.ts'
+import { calculateTotalCost } from '../helpers/calculateCost.ts'
+import { Title } from '../components/Title.tsx'
+import { BasketBook } from '../components/BasketBook.tsx'
+import { EmptyContent } from '../components/EmptyContent.tsx'
+import {BookData} from '../types/BookData'
 import style from '../styles/favoriteAndBasket.module.css'
 
-export function BasketPage () {
+export function BasketPage (): JSX.Element {
   // Hooks
   const dispatch = useDispatch()
-  const language = useSelector(state => state.language.value)
-  const [deletedBooks, setDeletedBooks] = useState([])
+  const language = useSelector((state: any) => state.language.value)
+  const [deletedBooks, setDeletedBooks] = useState<string[]>([])
 
   // Variables
-  const basketBooks = getBasketBooks()
+  const basketBooks = getBasketBooks() as BookData[]
   const totalCost = calculateTotalCost(basketBooks)
 
   // Methods
-  function handleDeleteClick (isbn13) {
+  function handleDeleteClick (isbn13: string) {
     dispatch(removeBasketBook(isbn13))
     setDeletedBooks(prevDeletedBooks => [...prevDeletedBooks, isbn13])
   }
@@ -33,20 +34,20 @@ export function BasketPage () {
   // Template
   return (
     <>
-      <Title name={languages[language].basketPage.title} />
+      <Title name={languages[language as keyof typeof languages].basketPage.title} />
       {basketBooks.length === 0
         ? (
-          <EmptyContent text={languages[language].basketPage.emptyText} />
+          <EmptyContent text={languages[language as keyof typeof languages].basketPage.emptyText} />
           )
         : (
         <>
           <div className={style.buttonContainer}>
             <div className={style.totalContainer}>
-              <p>{languages[language].basketPage.totalCountText} {basketBooks.length}</p>
-              <p>{languages[language].basketPage.totalCostText} {totalCost}$</p>
+              <p>{languages[language as keyof typeof languages].basketPage.totalCountText} {basketBooks.length}</p>
+              <p>{languages[language as keyof typeof languages].basketPage.totalCostText} {totalCost}$</p>
             </div>
             <button onClick={handleDeleteAllClick} className={style.button}>
-              {languages[language].basketPage.buttonDelAll}
+              {languages[language as keyof typeof languages].basketPage.buttonDelAll}
             </button>
           </div>
           <div className={style.line}></div>

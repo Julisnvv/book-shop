@@ -1,11 +1,16 @@
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { languages } from '../config/languages/index.js'
+import { languages } from '../config/languages/index.ts'
+import {BookData} from '../types/BookData'
 import style from '../styles/favoriteAndBasket.module.css'
 
-export function BookSelectionTemplate (props) {
+interface BookSelectionTemplateProps extends BookData {
+  image: string
+}
+
+export function BookSelectionTemplate (props: BookSelectionTemplateProps): JSX.Element {
   // Hooks
-  const language = useSelector(state => state.language.value)
+  const language = useSelector((state: any) => state.language.value)
 
   // Template
   return (
@@ -20,7 +25,7 @@ export function BookSelectionTemplate (props) {
           <p className={style.p}>isbn: {props.isbn13}</p>
         </div>
         <NavLink to={`/books/${props.isbn13}`} style={{ textDecoration: 'none' }}>
-          <p className={style.readMore}>{languages[language].favoritePage.readMore}</p>
+          <p className={style.readMore}>{languages[language as keyof typeof languages].favoritePage.readMore}</p>
         </NavLink>
         <p className={style.h} style={{ fontSize: '23px' }}>{props.price}</p>
       </div>

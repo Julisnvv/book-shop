@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
+interface LanguageState {
+  value: string
+}
+
+const initialState: LanguageState = {
   value: 'en'
 }
 

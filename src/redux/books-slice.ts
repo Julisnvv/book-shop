@@ -1,6 +1,18 @@
-import { createSlice, createAsyncThunk, createAction } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk, createAction, PayloadAction } from '@reduxjs/toolkit'
 import { call, put } from 'redux-saga/effects'
 import { requestNewBooks, requestSearchBooks, requestBook } from '../services/books'
+import { BookData } from '../types/BookData'
+
+interface BooksState {
+  newData: BookData[]
+  searchData: BookData[]
+  singleData: BookData
+  limit: number
+  pagesCounter: number
+  favoriteBooks: BookData[]
+  basketBooks: BookData[]
+  error?: any
+}
 
 // Worker
 export function * fetchNewDataSaga () {
@@ -14,7 +26,7 @@ export function * fetchNewDataSaga () {
 
 export const fetchSearchData = createAsyncThunk(
   'books/fetchSearchData',
-  async (opts = {}, { getState }) => {
+  async (opts: { search: string; page?: number }, { getState }) => {
     const { search, page = 1 } = opts
     const { limit } = getState().books
     const offset = (page - 1) * limit
@@ -25,7 +37,7 @@ export const fetchSearchData = createAsyncThunk(
 
 export const fetchSingleData = createAsyncThunk(
   'books/fetchSingleData',
-  async (isbn13) => {
+  async (isbn13: string) => {
     const data = await requestBook(isbn13)
     return data
   }
@@ -45,17 +57,17 @@ export const booksSlice = createSlice({
   name: 'books',
   initialState,
   reducers: {
-    getBooksSuccess: (state, action) => {
+    getBooksSuccess: (state, action: PayloadAction<{ books: BookData[] }>) => {
       state.newData = action.payload.books.map((book) => ({
         ...book
       }))
     },
-    setError: (state, action) => {
+    setError: (state, action: PayloadAction<any>) => {
       state.error = action.payload
     },
-    removeFavoriteBook: (state, action) => {
+    removeFavoriteBook: (state, action: PayloadAction<string>) => {
       const isbn13 = action.payload
-      const updatedFavoriteBooks = state.favoriteBooks.filter((book) => book.isbn13 !== isbn13)
+      const updatedFavoriteBooks = state.favoriteBooks.filter((book: BookData) => book.isbn13 !== isbn13)
       const favoriteStorageKey = `favoriteBook_${isbn13}`
       localStorage.removeItem(favoriteStorageKey)
       return {
@@ -72,9 +84,9 @@ export const booksSlice = createSlice({
         localStorage.removeItem(key)
       })
     },
-    removeBasketBook: (state, action) => {
+    removeBasketBook: (state, action: PayloadAction<string>) => {
       const isbn13 = action.payload
-      const updatedBasketBooks = state.basketBooks.filter((book) => book.isbn13 !== isbn13)
+      const updatedBasketBooks = state.basketBooks.filter((book: BookData) => book.isbn13 !== isbn13)
       state.basketBooks = updatedBasketBooks
       const basketStorageKey = `basketBook_${isbn13}`
       localStorage.removeItem(basketStorageKey)
@@ -92,7 +104,7 @@ export const booksSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchSearchData.fulfilled, (state, action) => {
-        state.searchData = action.payload.books.map((book) => ({
+        state.searchData = action.payload.books.map((book: BookData) => ({
           ...book
         }))
         if (state.pagesCounter) return

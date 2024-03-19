@@ -12,7 +12,7 @@ export function Header () {
   const dispatch = useDispatch()
 
   // Methods
-  const toggleLang = (event) => {
+  const toggleLang = (event: any) => {
     dispatch(setLanguage(event.target.value))
   }
 

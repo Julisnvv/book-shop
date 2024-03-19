@@ -2,8 +2,13 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setImage } from '../redux/image-preview-slice'
 import { Modal } from './Modal'
+import { BookData } from '../types/BookData'
 
-export function BookImage (props) {
+interface BookImageProps extends BookData {
+  image: string
+}
+
+export function BookImage (props: BookImageProps): JSX.Element {
   // Hooks
   const dispatch = useDispatch()
   const [isOpen, setIsOpen] = useState(false)
@@ -28,9 +33,7 @@ export function BookImage (props) {
         onClick={handleClickImage}
       />
       {isOpen && (
-        <Modal title={props.title} subtitle={props.subtitle} onToggle={toggle}>
-          {props.children}
-        </Modal>
+        <Modal title={props.title} subtitle={props.subtitle} onToggle={toggle} />
       )}
     </>
   )

@@ -4,10 +4,10 @@ import { Card } from './Card'
 import { fetchNewData } from '../redux/books-slice'
 import style from '../styles/card.module.css'
 
-export function CardList () {
+export function CardList (): JSX.Element {
   // Hooks
   const dispatch = useDispatch()
-  const books = useSelector((state) => state.books.newData)
+  const books = useSelector((state: any) => state.books.newData)
 
   useEffect(() => {
     dispatch(fetchNewData())

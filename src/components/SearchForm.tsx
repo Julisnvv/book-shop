@@ -6,19 +6,19 @@ import style from '../styles/search.module.css'
 export function SearchForm () {
   // Hooks
   const { query: queryCurrent, page: pageCurrent } = useParams()
-  const [query, setQuery] = useState(queryCurrent)
-  const [page, setPage] = useState(pageCurrent)
+  const [query, setQuery] = useState<string>(queryCurrent)
+  const [page, setPage] = useState<number>(pageCurrent)
   const navigate = useNavigate()
 
   // Methods
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     navigate(`/search/${query}/${page}`)
     setQuery('')
     setPage(1)
   }
 
-  const handleChange = (event) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value)
   }
 

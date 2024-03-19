@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
+interface ImagePreviewState {
+  url: string
+}
+
+const initialState: ImagePreviewState = {
   url: ''
 }
 

@@ -3,12 +3,12 @@ import { MenuContent } from './MenuContent'
 import burgerMenu from '../img/menu-burger.svg'
 import style from '../styles/menu.module.css'
 
-export function Menu () {
+export function Menu (): JSX.Element {
   // Hooks
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState<boolean>(false)
 
   // Methods
-  function toggle () {
+  function toggle (): void {
     setIsOpen(!isOpen)
   }
 

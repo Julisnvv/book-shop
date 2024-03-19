@@ -1,9 +1,14 @@
 import { BookSelectionTemplate } from './BookSelectionTemplate'
+import {BookData} from '../types/BookData'
 import close from '../img/cross.svg'
-import basket from '../img/in-basket.svg'
 import style from '../styles/favoriteAndBasket.module.css'
 
-export function FavoriteBook ({ book, handleDeleteClick, handleAddToBasketClick }) {
+interface BasketBookProps {
+  book: BookData
+  handleDeleteClick: (isbn13: string) => void
+}
+
+export function BasketBook ({ book, handleDeleteClick }: BasketBookProps): JSX.Element {
   // Template
   return (
     <div key={book.isbn13}>
@@ -16,13 +21,6 @@ export function FavoriteBook ({ book, handleDeleteClick, handleAddToBasketClick 
             alt="close"
             onClick={() => handleDeleteClick(book.isbn13)}
             style={{ width: '30px', height: '30px', cursor: 'pointer' }}
-          />
-          <img
-            className={style.basket}
-            src={basket}
-            alt="basket"
-            onClick={() => handleAddToBasketClick(book.isbn13)}
-            style={{ width: '30px', height: '30px', cursor: 'pointer', marginBottom: '30px' }}
           />
         </div>
       </div>

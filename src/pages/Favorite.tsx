@@ -1,22 +1,23 @@
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { languages } from '../config/languages/index.js'
-import { removeFavoriteBook, removeFavoriteAllBooks } from '../redux/books-slice'
-import { handleAddToBasket, getFavoriteBooks } from '../helpers/localStorage'
-import { Title } from '../components/Title'
-import { FavoriteBook } from '../components/FavoriteBook'
-import { EmptyContent } from '../components/EmptyContent'
+import { languages } from '../config/languages/index.ts'
+import { removeFavoriteBook, removeFavoriteAllBooks } from '../redux/books-slice.js'
+import { handleAddToBasket, getFavoriteBooks } from '../helpers/localStorage.ts'
+import { Title } from '../components/Title.tsx'
+import { FavoriteBook } from '../components/FavoriteBook.tsx'
+import { EmptyContent } from '../components/EmptyContent.tsx'
+import { BookData } from '../types/BookData.ts'
 import style from '../styles/favoriteAndBasket.module.css'
 
-export function FavoritePage () {
+export function FavoritePage (): JSX.Element {
   // Hooks
   const dispatch = useDispatch()
-  const language = useSelector(state => state.language.value)
-  const [deletedBooks, setDeletedBooks] = useState([])
-  const favoriteBooks = getFavoriteBooks()
+  const language = useSelector((state: any) => state.language.value)
+  const [deletedBooks, setDeletedBooks] = useState<string[]>([])
+  const favoriteBooks = getFavoriteBooks() as BookData[]
 
   // Methods
-  function handleDeleteClick (isbn13) {
+  function handleDeleteClick (isbn13: string) {
     dispatch(removeFavoriteBook(isbn13))
     setDeletedBooks(prevDeletedBooks => [...prevDeletedBooks, isbn13])
   }
@@ -26,24 +27,24 @@ export function FavoritePage () {
     setDeletedBooks(prevDeletedBooks => [...prevDeletedBooks, ...favoriteBooks.map(book => book.isbn13)])
   }
 
-  function handleAddToBasketClick (isbn13) {
+  function handleAddToBasketClick (isbn13: string) {
     handleAddToBasket(isbn13, setDeletedBooks)
   }
 
   // Template
   return (
     <>
-      <Title name={languages[language].favoritePage.title} />
+      <Title name={languages[language as keyof typeof languages].favoritePage.title} />
       {favoriteBooks.length === 0
         ? (
-          <EmptyContent text={languages[language].favoritePage.emptyText} />
+          <EmptyContent text={languages[language as keyof typeof languages].favoritePage.emptyText} />
           )
         : (
         <>
           <div className={style.buttonContainer}>
-            <p>{languages[language].favoritePage.totalCountText} {favoriteBooks.length}</p>
+            <p>{languages[language as keyof typeof languages].favoritePage.totalCountText} {favoriteBooks.length}</p>
             <button onClick={handleDeleteAllClick} className={style.button}>
-                {languages[language].favoritePage.buttonDelAll}
+                {languages[language as keyof typeof languages].favoritePage.buttonDelAll}
             </button>
           </div>
           <div className={style.line}></div>

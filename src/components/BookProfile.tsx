@@ -5,13 +5,14 @@ import { fetchSingleData } from '../redux/books-slice'
 import { BookImage } from './BookImage'
 import { BookInfo } from './BookInfo'
 import { BookIcons } from './BookIcons'
+import { BookData } from '../types/BookData'
 import style from '../styles/book.module.css'
 
-export function BookProfile () {
+export function BookProfile (): JSX.Element {
   // Hooks
   const dispatch = useDispatch()
-  const { isbn13 } = useParams()
-  const book = useSelector((state) => state.books.singleData)
+  const { isbn13 } = useParams<{isbn13: string}>()
+  const book = useSelector((state: any) => state.books.singleData) as BookData
 
   useEffect(() => {
     dispatch(fetchSingleData(isbn13))
