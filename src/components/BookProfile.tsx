@@ -2,17 +2,22 @@ import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { fetchSingleData } from '../redux/books-slice'
+import { RootState, AppDispatch } from '../redux/store'
+import { Book } from '../types/interfaces'
 import { BookImage } from './BookImage'
 import { BookInfo } from './BookInfo'
 import { BookIcons } from './BookIcons'
-import { BookData } from '../types/BookData'
 import style from '../styles/book.module.css'
 
 export function BookProfile (): JSX.Element {
   // Hooks
-  const dispatch = useDispatch()
-  const { isbn13 } = useParams<{isbn13: string}>()
-  const book = useSelector((state: any) => state.books.singleData) as BookData
+  const dispatch = useDispatch<AppDispatch>()
+  const { isbn13 } = useParams<{isbn13: string}>() ?? 'defaultIsbn13Value'
+  const book = useSelector((state: RootState) => state.books.singleData) as Book
+
+  if (!isbn13) {
+    throw new Error('isbn13 is required')
+  }
 
   useEffect(() => {
     dispatch(fetchSingleData(isbn13))

@@ -1,15 +1,16 @@
 import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { setLanguage } from '../redux/language-slice'
+import { AppDispatch } from '../redux/store'
 import { SearchForm } from './SearchForm'
 import { Menu } from './Menu'
 import favorite from '../img/favorite.svg'
 import basket from '../img/in-basket.svg'
 import style from '../styles/header.module.css'
 
-export function Header () {
+export function Header (): JSX.Element {
   // Hooks
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
 
   // Methods
   const toggleLang = (event: any) => {

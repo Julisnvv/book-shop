@@ -1,14 +1,8 @@
+import { FavoriteBookProps } from '../types/interfacesProps'
 import { BookSelectionTemplate } from './BookSelectionTemplate'
-import {BookData} from '../types/BookData'
 import close from '../img/cross.svg'
 import basket from '../img/in-basket.svg'
 import style from '../styles/favoriteAndBasket.module.css'
-
-interface FavoriteBookProps {
-  book: BookData
-  handleDeleteClick: (isbn13: string) => void
-  handleAddToBasketClick: (isbn13: string) => void
-}
 
 export function FavoriteBook ({ book, handleDeleteClick, handleAddToBasketClick }: FavoriteBookProps): JSX.Element {
   // Template

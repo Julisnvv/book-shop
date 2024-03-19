@@ -1,11 +1,8 @@
+import { EmptyContentProps } from '../types/interfacesProps'
 import empty from '../img/no-result.svg'
 import style from '../styles/favoriteAndBasket.module.css'
 
-interface EmptyContentProps {
-  text: string
-}
-
-export function EmptyContent (props: EmptyContentProps) {
+export function EmptyContent (props: EmptyContentProps): JSX.Element {
   // Template
   return (
     <div className={style.emptyContainer}>

@@ -1,16 +1,12 @@
 import { useState, useEffect } from 'react'
 import { handleFavoriteToggle, handleBasketToggle, checkLocalStorageData } from '../helpers/localStorage'
-import { BookData } from '../types/BookData'
+import { BooksNew } from '../types/interfaces'
 import favorite from '../img/favorite.svg'
 import inFavorite from '../img/in-favorite.svg'
 import basket from '../img/basket.svg'
 import inBasket from '../img/in-basket.svg'
 
-interface BookIconsProps extends BookData {
-  isbn13: string
-}
-
-export function BookIcons (props: BookIconsProps): JSX.Element {
+export function BookIcons (props: BooksNew): JSX.Element {
   // Hooks
   const [isFavorite, setIsFavorite] = useState(false)
   const [isBasket, setIsBasket] = useState(false)

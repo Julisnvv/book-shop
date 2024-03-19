@@ -1,16 +1,13 @@
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { languages } from '../config/languages/index.ts'
+import { languages } from '../config/languages/index'
+import { RootState } from '../redux/store'
+import { MenuProps } from '../types/interfacesProps'
 import style from '../styles/menu.module.css'
 
-interface MenuContentProps {
-  isOpen: boolean
-  onToggle: () => void
-}
-
-export function MenuContent (props: MenuContentProps): JSX.Element {
+export function MenuContent (props: MenuProps): JSX.Element {
   // Hooks
-  const language = useSelector((state: any) => state.language.value)
+  const language = useSelector((state: RootState) => state.language.value)
 
   // Methods
   function handleLinkClick (): void {

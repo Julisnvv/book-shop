@@ -1,30 +1,26 @@
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { languages } from '../config/languages/index.ts'
-import { fetchSearchData } from '../redux/books-slice.js'
-import { Card } from '../components/Card.tsx'
-import { EmptyContent } from '../components/EmptyContent.tsx'
-import { Pagination } from '../components/Pagination.tsx'
-import {BookData} from '../types/BookData.ts'
+import { languages } from '../config/languages/index'
+import { fetchSearchData } from '../redux/books-slice'
+import { BooksNew } from '../types/interfaces'
+import { RootState, AppDispatch } from '../redux/store'
+import { Card } from '../components/Card'
+import { EmptyContent } from '../components/EmptyContent'
+import { Pagination } from '../components/Pagination'
 import style from '../styles/search.module.css'
-
-interface SearchResultPageParams {
-  query: string
-  page?: string
-}
 
 export function SearchResultPage (): JSX.Element {
   // Hooks
-  const dispatch = useDispatch()
-  const { query, page: pageNumberCurrent } = useParams<SearchResultPageParams>()
-  const { searchData, pagesCounter } = useSelector((state: any) => state.books)
+  const dispatch = useDispatch<AppDispatch>()
+  const { query, page: pageNumberCurrent } = useParams<{query: string, page: string}>()
+  const { searchData, pagesCounter } = useSelector((state: RootState) => state.books)
   const [isLoading, setIsLoading] = useState(true)
-  const language = useSelector((state: any) => state.language.value)
+  const language = useSelector((state: RootState) => state.language.value)
 
   useEffect(() => {
     setIsLoading(true)
-    dispatch(fetchSearchData({ search: query, page: pageNumberCurrent }))
+    dispatch(fetchSearchData({ search: String(query), page: Number(pageNumberCurrent) }))
       .finally(() => setIsLoading(false))
   }, [dispatch, query, pageNumberCurrent])
 
@@ -35,7 +31,7 @@ export function SearchResultPage (): JSX.Element {
     }
 
     if (searchData.length) {
-      return searchData.map((book: BookData) => (
+      return searchData.map((book: BooksNew) => (
         <Card key={book.isbn13} {...book} />
       ))
     }
@@ -50,7 +46,7 @@ export function SearchResultPage (): JSX.Element {
       <div className={style.cardList}>
         {renderSearchBooks()}
       </div>
-      <Pagination pageNumberCurrent={pageNumberCurrent} pagesCounter={pagesCounter} activePage={+pageNumberCurrent} />
+      <Pagination pageNumberCurrent={Number(pageNumberCurrent)} pagesCounter={pagesCounter} activePage={Number(pageNumberCurrent)} />
     </>
   )
 }

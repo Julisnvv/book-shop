@@ -11,7 +11,7 @@ export function App () {
   // Template
   return (
     <Provider store={store}>
-      <RouterProvider router={router}></RouterProvider>
+      <RouterProvider router={router} />
     </Provider>
   )
 }

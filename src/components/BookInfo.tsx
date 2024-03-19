@@ -1,14 +1,7 @@
 import style from '../styles/book.module.css'
+import { BookInfoProps } from '../types/interfacesProps'
 
-interface BookInfoProps {
-  authors: string
-  publisher: string
-  pages: number
-  year: number
-  rating: number
-}
-
-export function BookInfo (props: BookInfoProps) {
+export function BookInfo (props: BookInfoProps): JSX.Element {
   // Template
   return (
     <div className={style.infoContainer}>

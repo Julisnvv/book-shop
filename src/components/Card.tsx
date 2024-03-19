@@ -1,14 +1,10 @@
 import { NavLink } from 'react-router-dom'
+import { BooksNew } from '../types/interfaces'
 import { BookIcons } from './BookIcons'
 import { BookImage } from './BookImage'
-import { BookData } from '../types/BookData'
 import style from '../styles/card.module.css'
 
-interface CardProps extends BookData {
-  isbn13: string;
-}
-
-export function Card (props: CardProps): JSX.Element {
+export function Card (props: BooksNew): JSX.Element {
   // Template
   return (
     <div className={style.card}>

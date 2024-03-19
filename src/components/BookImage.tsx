@@ -1,16 +1,13 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setImage } from '../redux/image-preview-slice'
+import { AppDispatch } from '../redux/store'
+import { BooksNew } from '../types/interfaces'
 import { Modal } from './Modal'
-import { BookData } from '../types/BookData'
 
-interface BookImageProps extends BookData {
-  image: string
-}
-
-export function BookImage (props: BookImageProps): JSX.Element {
+export function BookImage (props: BooksNew): JSX.Element {
   // Hooks
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const [isOpen, setIsOpen] = useState(false)
 
   // Methods

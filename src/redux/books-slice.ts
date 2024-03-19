@@ -1,36 +1,32 @@
 import { createSlice, createAsyncThunk, createAction, PayloadAction } from '@reduxjs/toolkit'
 import { call, put } from 'redux-saga/effects'
 import { requestNewBooks, requestSearchBooks, requestBook } from '../services/books'
-import { BookData } from '../types/BookData'
+import { BooksNew, Book } from '../types/interfaces'
 
-interface BooksState {
-  newData: BookData[]
-  searchData: BookData[]
-  singleData: BookData
-  limit: number
-  pagesCounter: number
-  favoriteBooks: BookData[]
-  basketBooks: BookData[]
-  error?: any
+interface FetchSearchDataOptions {
+  search: string
+  page?: number
 }
 
+type BooksNewCall = (...args: any) => any
+
 // Worker
-export function * fetchNewDataSaga () {
+export function * fetchNewDataSaga (): Generator<any, void, any> {
   try {
-    const data = yield call(requestNewBooks)
+    const data = yield call<BooksNewCall>(requestNewBooks)
     yield put(getBooksSuccess(data))
-  } catch (error) {
+  } catch (error: any) {
     yield put(setError(error))
   }
 }
 
 export const fetchSearchData = createAsyncThunk(
   'books/fetchSearchData',
-  async (opts: { search: string; page?: number }, { getState }) => {
+  async (opts: FetchSearchDataOptions, { getState }: any) => {
     const { search, page = 1 } = opts
     const { limit } = getState().books
     const offset = (page - 1) * limit
-    const data = await requestSearchBooks({ search, page, limit, offset })
+    const data = await requestSearchBooks({ search, page: page.toString(), limit, offset })
     return data
   }
 )
@@ -43,10 +39,21 @@ export const fetchSingleData = createAsyncThunk(
   }
 )
 
-const initialState = {
+interface BooksState {
+  newData: BooksNew[]
+  searchData: BooksNew[]
+  singleData: Book
+  limit: number
+  pagesCounter: number
+  favoriteBooks: Book[]
+  basketBooks: Book[]
+  error?: any
+}
+
+const initialState: BooksState = {
   newData: [],
   searchData: [],
-  singleData: {},
+  singleData: {} as Book,
   limit: 9,
   pagesCounter: 0,
   favoriteBooks: [],
@@ -57,7 +64,7 @@ export const booksSlice = createSlice({
   name: 'books',
   initialState,
   reducers: {
-    getBooksSuccess: (state, action: PayloadAction<{ books: BookData[] }>) => {
+    getBooksSuccess: (state, action: PayloadAction<{ books: BooksNew[] }>) => {
       state.newData = action.payload.books.map((book) => ({
         ...book
       }))
@@ -67,13 +74,10 @@ export const booksSlice = createSlice({
     },
     removeFavoriteBook: (state, action: PayloadAction<string>) => {
       const isbn13 = action.payload
-      const updatedFavoriteBooks = state.favoriteBooks.filter((book: BookData) => book.isbn13 !== isbn13)
+      const updatedFavoriteBooks = state.favoriteBooks.filter((book: Book) => book.isbn13 !== isbn13)
       const favoriteStorageKey = `favoriteBook_${isbn13}`
       localStorage.removeItem(favoriteStorageKey)
-      return {
-        ...state,
-        favoriteBooks: updatedFavoriteBooks
-      }
+      state.favoriteBooks = updatedFavoriteBooks
     },
     removeFavoriteAllBooks: (state) => {
       state.favoriteBooks = []
@@ -86,17 +90,17 @@ export const booksSlice = createSlice({
     },
     removeBasketBook: (state, action: PayloadAction<string>) => {
       const isbn13 = action.payload
-      const updatedBasketBooks = state.basketBooks.filter((book: BookData) => book.isbn13 !== isbn13)
+      const updatedBasketBooks = state.basketBooks.filter((book: Book) => book.isbn13 !== isbn13)
       state.basketBooks = updatedBasketBooks
       const basketStorageKey = `basketBook_${isbn13}`
       localStorage.removeItem(basketStorageKey)
     },
     removeBasketAllBooks: (state) => {
       state.basketBooks = []
-      const basketBookKeys = Object.keys(localStorage).filter(key =>
+      const basketBookKeys = Object.keys(localStorage).filter((key) =>
         key.startsWith('basketBook_')
       )
-      basketBookKeys.forEach(key => {
+      basketBookKeys.forEach((key) => {
         localStorage.removeItem(key)
       })
     }
@@ -104,7 +108,7 @@ export const booksSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchSearchData.fulfilled, (state, action) => {
-        state.searchData = action.payload.books.map((book: BookData) => ({
+        state.searchData = action.payload.books.map((book: Book) => ({
           ...book
         }))
         if (state.pagesCounter) return

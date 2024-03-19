@@ -1,11 +1,6 @@
 import { useParams, NavLink } from 'react-router-dom'
+import { PaginationProps } from '../types/interfacesProps'
 import style from '../styles/pagination.module.css'
-
-interface PaginationProps {
-  pageNumberCurrent: number
-  pagesCounter: number
-  activePage: number
-}
 
 export function Pagination ({ pageNumberCurrent, pagesCounter, activePage }: PaginationProps): JSX.Element {
   // Hooks

@@ -1,20 +1,21 @@
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { languages } from '../config/languages/index.ts'
-import { removeFavoriteBook, removeFavoriteAllBooks } from '../redux/books-slice.js'
-import { handleAddToBasket, getFavoriteBooks } from '../helpers/localStorage.ts'
-import { Title } from '../components/Title.tsx'
-import { FavoriteBook } from '../components/FavoriteBook.tsx'
-import { EmptyContent } from '../components/EmptyContent.tsx'
-import { BookData } from '../types/BookData.ts'
+import { languages } from '../config/languages/index'
+import { removeFavoriteBook, removeFavoriteAllBooks } from '../redux/books-slice'
+import { Book } from '../types/interfaces'
+import { RootState, AppDispatch } from '../redux/store'
+import { handleAddToBasket, getFavoriteBooks } from '../helpers/localStorage'
+import { Title } from '../components/Title'
+import { FavoriteBook } from '../components/FavoriteBook'
+import { EmptyContent } from '../components/EmptyContent'
 import style from '../styles/favoriteAndBasket.module.css'
 
 export function FavoritePage (): JSX.Element {
   // Hooks
-  const dispatch = useDispatch()
-  const language = useSelector((state: any) => state.language.value)
+  const dispatch = useDispatch<AppDispatch>()
+  const language = useSelector((state: RootState) => state.language.value)
   const [deletedBooks, setDeletedBooks] = useState<string[]>([])
-  const favoriteBooks = getFavoriteBooks() as BookData[]
+  const favoriteBooks = getFavoriteBooks() as Book[]
 
   // Methods
   function handleDeleteClick (isbn13: string) {

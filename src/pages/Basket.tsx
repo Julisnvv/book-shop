@@ -1,23 +1,24 @@
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { languages } from '../config/languages/index.ts'
-import { removeBasketBook, removeBasketAllBooks } from '../redux/books-slice.js'
-import { getBasketBooks } from '../helpers/localStorage.ts'
-import { calculateTotalCost } from '../helpers/calculateCost.ts'
-import { Title } from '../components/Title.tsx'
-import { BasketBook } from '../components/BasketBook.tsx'
-import { EmptyContent } from '../components/EmptyContent.tsx'
-import {BookData} from '../types/BookData'
+import { languages } from '../config/languages/index'
+import { removeBasketBook, removeBasketAllBooks } from '../redux/books-slice'
+import { Book } from '../types/interfaces'
+import { RootState, AppDispatch } from '../redux/store'
+import { getBasketBooks } from '../helpers/localStorage'
+import { calculateTotalCost } from '../helpers/calculateCost'
+import { Title } from '../components/Title'
+import { BasketBook } from '../components/BasketBook'
+import { EmptyContent } from '../components/EmptyContent'
 import style from '../styles/favoriteAndBasket.module.css'
 
 export function BasketPage (): JSX.Element {
   // Hooks
-  const dispatch = useDispatch()
-  const language = useSelector((state: any) => state.language.value)
+  const dispatch = useDispatch<AppDispatch>()
+  const language = useSelector((state: RootState) => state.language.value)
   const [deletedBooks, setDeletedBooks] = useState<string[]>([])
 
   // Variables
-  const basketBooks = getBasketBooks() as BookData[]
+  const basketBooks = getBasketBooks() as Book[]
   const totalCost = calculateTotalCost(basketBooks)
 
   // Methods

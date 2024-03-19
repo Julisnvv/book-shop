@@ -1,6 +1,6 @@
 import style from '../styles/footer.module.css'
 
-export function Footer () {
+export function Footer (): JSX.Element {
   // Template
   return (
     <>

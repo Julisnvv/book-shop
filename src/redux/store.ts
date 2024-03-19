@@ -24,3 +24,6 @@ export const store = configureStore({
 
 // Run all sagas
 sagaMiddleware.run(sagas)
+
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch;

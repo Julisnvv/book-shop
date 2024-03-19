@@ -1,16 +1,12 @@
 import { useSelector } from 'react-redux'
+import { RootState } from '../redux/store'
+import { ModalProps } from '../types/interfacesProps'
 import close from '../img/cross.svg'
 import style from '../styles/modal.module.css'
 
-interface ModalProps {
-  title: string
-  subtitle: string
-  onToggle: () => void
-}
-
 export function Modal (props: ModalProps): JSX.Element {
   // Hooks
-  const imageUrl = useSelector((state: any) => state.imagePreview.url)
+  const imageUrl = useSelector((state: RootState) => state.imagePreview.url)
 
   // Template
   return (

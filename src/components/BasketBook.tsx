@@ -1,12 +1,7 @@
 import { BookSelectionTemplate } from './BookSelectionTemplate'
-import {BookData} from '../types/BookData'
+import { BasketBookProps } from '../types/interfacesProps'
 import close from '../img/cross.svg'
 import style from '../styles/favoriteAndBasket.module.css'
-
-interface BasketBookProps {
-  book: BookData
-  handleDeleteClick: (isbn13: string) => void
-}
 
 export function BasketBook ({ book, handleDeleteClick }: BasketBookProps): JSX.Element {
   // Template

@@ -1,23 +1,30 @@
-import { newBooksEndpoint, searchBooksEndpoint, bookEndpoint } from '../utils/api.ts'
-import { client } from '../utils/client.ts'
+import { newBooksEndpoint, searchBooksEndpoint, bookEndpoint } from '../utils/api'
+import { client } from '../utils/client'
+import { Book, BooksNew } from '../types/interfaces'
 
-type RequestsParams = {
-  search?: string
-  page?: number
+interface Data {
+  booksData: BooksNew
 }
 
-export const requestNewBooks = async (params: RequestsParams) => {
-  const { data } = await client.get(newBooksEndpoint, { params })
+interface SearchParams {
+  search: string
+  page: string
+  limit: string
+  offset: number
+}
+
+export const requestNewBooks = async (params: Data) => {
+  const { data } = await client.get<BooksNew>(newBooksEndpoint, { params })
   return data
 }
 
-export const requestSearchBooks = async (params: RequestsParams) => {
+export const requestSearchBooks = async (params: SearchParams) => {
   const { search, page } = params
   const { data } = await client.get(searchBooksEndpoint + `${search}/${page}`, { params })
   return data
 }
 
 export const requestBook = async (isbn13: string) => {
-  const { data } = await client.get(bookEndpoint + isbn13)
+  const { data } = await client.get<Book>(bookEndpoint + isbn13)
   return data
 }
