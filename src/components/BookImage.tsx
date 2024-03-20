@@ -11,11 +11,11 @@ export function BookImage (props: BooksNew): JSX.Element {
   const [isOpen, setIsOpen] = useState(false)
 
   // Methods
-  function toggle () {
+  function toggle (): void {
     setIsOpen(!isOpen)
   }
 
-  function handleClickImage () {
+  function handleClickImage (): void {
     dispatch(setImage(props.image))
     toggle()
   }

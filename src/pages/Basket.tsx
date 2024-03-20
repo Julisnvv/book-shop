@@ -22,12 +22,12 @@ export function BasketPage (): JSX.Element {
   const totalCost = calculateTotalCost(basketBooks)
 
   // Methods
-  function handleDeleteClick (isbn13: string) {
+  function handleDeleteClick (isbn13: string): void {
     dispatch(removeBasketBook(isbn13))
     setDeletedBooks(prevDeletedBooks => [...prevDeletedBooks, isbn13])
   }
 
-  function handleDeleteAllClick () {
+  function handleDeleteAllClick (): void {
     dispatch(removeBasketAllBooks())
     setDeletedBooks(prevDeletedBooks => [...prevDeletedBooks, ...basketBooks.map(book => book.isbn13)])
   }
@@ -52,7 +52,7 @@ export function BasketPage (): JSX.Element {
             </button>
           </div>
           <div className={style.line}></div>
-          {basketBooks.map(book => {
+          {basketBooks.map((book: Book) => {
             if (deletedBooks.includes(book.isbn13)) {
               return null
             }

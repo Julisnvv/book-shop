@@ -16,11 +16,11 @@ export function BookIcons (props: BooksNew): JSX.Element {
   }, [props])
 
   // Methods
-  function handleFavoriteClick () {
+  function handleFavoriteClick (): void {
     handleFavoriteToggle(props, isFavorite, setIsFavorite)
   }
 
-  function handleBasketClick () {
+  function handleBasketClick (): void {
     handleBasketToggle(props, isBasket, setIsBasket)
   }
 

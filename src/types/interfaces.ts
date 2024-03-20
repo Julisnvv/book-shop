@@ -10,7 +10,7 @@ export interface BooksNew{
 export interface Book extends BooksNew {
   authors: string
   publisher: string
-  isbn10: string;
+  isbn10: string
   pages: number
   year: number
   rating: number

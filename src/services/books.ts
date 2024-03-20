@@ -1,17 +1,7 @@
 import { newBooksEndpoint, searchBooksEndpoint, bookEndpoint } from '../utils/api'
 import { client } from '../utils/client'
 import { Book, BooksNew } from '../types/interfaces'
-
-interface Data {
-  booksData: BooksNew
-}
-
-interface SearchParams {
-  search: string
-  page: string
-  limit: string
-  offset: number
-}
+import { Data, SearchParams } from '../types/interfacesSlice'
 
 export const requestNewBooks = async (params: Data) => {
   const { data } = await client.get<BooksNew>(newBooksEndpoint, { params })

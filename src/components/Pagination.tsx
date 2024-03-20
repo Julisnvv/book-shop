@@ -48,7 +48,7 @@ export function Pagination ({ pageNumberCurrent, pagesCounter, activePage }: Pag
   // Template
   return (
     <nav>
-      <ul className={`${style.pagination}`}>
+      <ul className={style.pagination}>
         {renderPagination()}
       </ul>
     </nav>

@@ -2,13 +2,7 @@ import { createSlice, createAsyncThunk, createAction, PayloadAction } from '@red
 import { call, put } from 'redux-saga/effects'
 import { requestNewBooks, requestSearchBooks, requestBook } from '../services/books'
 import { BooksNew, Book } from '../types/interfaces'
-
-interface FetchSearchDataOptions {
-  search: string
-  page?: number
-}
-
-type BooksNewCall = (...args: any) => any
+import { FetchSearchDataOptions, BooksNewCall, BooksState } from '../types/interfacesSlice'
 
 // Worker
 export function * fetchNewDataSaga (): Generator<any, void, any> {
@@ -33,22 +27,11 @@ export const fetchSearchData = createAsyncThunk(
 
 export const fetchSingleData = createAsyncThunk(
   'books/fetchSingleData',
-  async (isbn13: string) => {
+  async (isbn13: string): Promise<Book> => {
     const data = await requestBook(isbn13)
     return data
   }
 )
-
-interface BooksState {
-  newData: BooksNew[]
-  searchData: BooksNew[]
-  singleData: Book
-  limit: number
-  pagesCounter: number
-  favoriteBooks: Book[]
-  basketBooks: Book[]
-  error?: any
-}
 
 const initialState: BooksState = {
   newData: [],
@@ -132,4 +115,5 @@ export const {
   removeBasketBook,
   removeBasketAllBooks
 } = booksSlice.actions
+
 export const booksReducer = booksSlice.reducer

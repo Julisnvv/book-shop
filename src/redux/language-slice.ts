@@ -1,8 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-
-interface LanguageState {
-  value: string
-}
+import { LanguageState } from '../types/interfacesSlice'
 
 const initialState: LanguageState = {
   value: 'en'

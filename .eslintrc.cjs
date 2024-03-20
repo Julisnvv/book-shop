@@ -3,52 +3,56 @@ module.exports = {
     browser: true,
     es2021: true
   },
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    sourceType: 'module',
-    tsconfigRootDir: './',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    ecmaFeatures: {
-      jsx: true
-    },
-    ecmaVersion: 'latest'
-  },
   extends: [
-    'airbnb',
-    'airbnb-typescript',
-    'airbnb/hooks',
+    "airbnb",
+    "airbnb-typescript",
+    "airbnb/hooks",
     'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:@typescript-eslint/recommended',
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
     'plugin:react/jsx-runtime',
-    'plugin:react-hooks/recommended',
-    'standard'
+    "plugin:react-hooks/recommended",
+    "standard",
   ],
   overrides: [
     {
       env: {
         node: true
       },
-      files: ['*.ts', '*.tsx'],
+      files: [".eslintrc.{js,cjs}"],
       parserOptions: {
-        tsconfigRootDir: './',
-        project: ['./tsconfig.json']
+        sourceType: "script",
       }
-    }
+    },
   ],
-  plugins: [
-    'react',
-    '@typescript-eslint'
-  ],
+  parserOptions: {
+    ecmaVersion: "latest",
+    sourceType: "module",
+  },
+  plugins: ["react", "@typescript-eslint"],
   rules: {
-    'react/prop-types': 'off',
-    '@typescript-eslint/comma-dangle': 0,
-    'react/jsx-one-expression-per-line': 0,
-    '@typescript-eslint/no-unused-vars': 0,
-    'no-param-reassign': [
-      'error',
-      { props: true, ignorePropertyModificationsFor: ['state'] }
+    "react/react-in-jsx-scope": 0,
+    "import/extensions": 0,
+    "comma-dangle": [
+      "error",
+      {
+        arrays: "never",
+        objects: "never",
+        imports: "never",
+        exports: "never",
+        functions: "never",
+      }
     ],
-    'react/no-array-index-key': 0
-  }
+    "@typescript-eslint/comma-dangle": 0,
+    "react/jsx-one-expression-per-line": 0,
+    "@typescript-eslint/no-unused-vars": 0,
+    "no-param-reassign": [
+      "error",
+      { props: true, ignorePropertyModificationsFor: ["state"] }
+    ],
+    "react/no-array-index-key": 0,
+    "react/destructuring-assignment": 0,
+    "react/jsx-props-no-spreading": 0
+  },
 }

@@ -1,5 +1,5 @@
-import style from '../styles/book.module.css'
 import { BookInfoProps } from '../types/interfacesProps'
+import style from '../styles/book.module.css'
 
 export function BookInfo (props: BookInfoProps): JSX.Element {
   // Template

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import magnifyingGlass from '../img/magnifying-glass.svg'
 import style from '../styles/search.module.css'
@@ -11,14 +11,14 @@ export function SearchForm (): JSX.Element {
   const navigate = useNavigate()
 
   // Methods
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  function handleSubmit (event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault()
     setQuery('')
     navigate(`/search/${query}/${page}`)
     setPage('1')
   }
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  function handleChange (event: React.ChangeEvent<HTMLInputElement>): void {
     setQuery(event.target.value)
   }
 

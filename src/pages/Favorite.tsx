@@ -18,17 +18,17 @@ export function FavoritePage (): JSX.Element {
   const favoriteBooks = getFavoriteBooks() as Book[]
 
   // Methods
-  function handleDeleteClick (isbn13: string) {
+  function handleDeleteClick (isbn13: string): void {
     dispatch(removeFavoriteBook(isbn13))
     setDeletedBooks(prevDeletedBooks => [...prevDeletedBooks, isbn13])
   }
 
-  function handleDeleteAllClick () {
+  function handleDeleteAllClick (): void {
     dispatch(removeFavoriteAllBooks())
     setDeletedBooks(prevDeletedBooks => [...prevDeletedBooks, ...favoriteBooks.map(book => book.isbn13)])
   }
 
-  function handleAddToBasketClick (isbn13: string) {
+  function handleAddToBasketClick (isbn13: string): void {
     handleAddToBasket(isbn13, setDeletedBooks)
   }
 
@@ -49,7 +49,7 @@ export function FavoritePage (): JSX.Element {
             </button>
           </div>
           <div className={style.line}></div>
-          {favoriteBooks.map(book => {
+          {favoriteBooks.map((book: Book) => {
             if (deletedBooks.includes(book.isbn13)) {
               return null
             }

@@ -15,6 +15,7 @@ export function CardList (): JSX.Element {
     dispatch(fetchNewData())
   }, [dispatch])
 
+  // Methods
   if (!Array.isArray(books) || books.length === 0) {
     return <div className={style.poppins}>Loading...</div>
   }

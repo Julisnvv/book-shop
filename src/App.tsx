@@ -4,7 +4,7 @@ import { useTitle } from './hooks/useTitle'
 import { store } from './redux/store'
 import { router } from './router'
 
-export function App () {
+export function App (): JSX.Element {
   // Hooks
   useTitle('BOOKSTORE')
 
