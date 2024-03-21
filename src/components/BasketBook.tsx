@@ -11,7 +11,6 @@ export function BasketBook ({ book, handleDeleteClick }: BasketBookProps): JSX.E
         <BookSelectionTemplate {...book} />
         <div className={style.iconContainer}>
           <img
-            className={style.close}
             src={close}
             alt="close"
             onClick={() => handleDeleteClick(book.isbn13)}

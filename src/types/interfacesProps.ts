@@ -1,15 +1,15 @@
 import { Book } from './interfaces'
 
 export interface BasketBookProps {
-  book: Book
+  book: Book,
   handleDeleteClick: (isbn13: string) => void
 }
 
 export interface BookInfoProps {
-  authors: string
-  publisher: string
-  pages: number
-  year: number
+  authors: string,
+  publisher: string,
+  pages: number,
+  year: number,
   rating: number
 }
 
@@ -18,25 +18,25 @@ export interface EmptyContentProps {
 }
 
 export interface FavoriteBookProps {
-  book: Book
-  handleDeleteClick: (isbn13: string) => void
+  book: Book,
+  handleDeleteClick: (isbn13: string) => void,
   handleAddToBasketClick: (isbn13: string) => void
 }
 
 export interface MenuProps {
-  isOpen: boolean
+  isOpen: boolean,
   onToggle: () => void
 }
 
 export interface ModalProps {
-  title: string
-  subtitle: string
+  title: string,
+  subtitle: string,
   onToggle: () => void
 }
 
 export interface PaginationProps {
-  pageNumberCurrent: number
-  pagesCounter: number
+  pageNumberCurrent: number,
+  pagesCounter: number,
   activePage: number
 }
 

@@ -12,14 +12,12 @@ export function FavoriteBook ({ book, handleDeleteClick, handleAddToBasketClick 
         <BookSelectionTemplate {...book} />
         <div className={style.iconContainer}>
           <img
-            className={style.close}
             src={close}
             alt="close"
             onClick={() => handleDeleteClick(book.isbn13)}
             style={{ width: '30px', height: '30px', cursor: 'pointer' }}
           />
           <img
-            className={style.basket}
             src={basket}
             alt="basket"
             onClick={() => handleAddToBasketClick(book.isbn13)}

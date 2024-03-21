@@ -13,7 +13,7 @@ export function Header (): JSX.Element {
   const dispatch = useDispatch<AppDispatch>()
 
   // Methods
-  function toggleLang(event: React.ChangeEvent<HTMLSelectElement>): void {
+  function toggleLang (event: React.ChangeEvent<HTMLSelectElement>): void {
     dispatch(setLanguage(event.target.value))
   }
 

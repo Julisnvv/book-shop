@@ -6,7 +6,7 @@ import style from '../styles/search.module.css'
 export function SearchForm (): JSX.Element {
   // Hooks
   const { query: queryCurrent, page: pageCurrent } = useParams()
-  const [query, setQuery] = useState(queryCurrent)
+  const [query, setQuery] = useState(queryCurrent || '')
   const [page, setPage] = useState(pageCurrent)
   const navigate = useNavigate()
 

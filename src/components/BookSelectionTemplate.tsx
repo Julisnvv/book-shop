@@ -13,7 +13,7 @@ export function BookSelectionTemplate (props: Book): JSX.Element {
   return (
     <>
       <div className={style.imageContainer}>
-        <img src={props.image} alt="book" style={{ width: '100%', height: '100%' }}/>
+        <img src={props.image} alt="book" style={{ width: '100%', height: '100%' }} />
       </div>
       <div className={style.mainContainer}>
         <div className={style.titleContainer}>
