@@ -4,7 +4,7 @@ import { requestNewBooks, requestSearchBooks, requestBook } from '../services/bo
 import { BooksNew, Book } from '../types/interfaces'
 import { FetchSearchDataOptions, BooksNewCall, BooksState } from '../types/interfacesSlice'
 
-// Worker
+// Worker Saga
 export function * fetchNewDataSaga (): Generator<any, void, any> {
   try {
     const data = yield call<BooksNewCall>(requestNewBooks)
@@ -103,7 +103,7 @@ export const booksSlice = createSlice({
   }
 })
 
-// Actions
+// Actions Saga
 export const FETCH_NEW_DATA = 'books/fetchNewData'
 export const fetchNewData = createAction(FETCH_NEW_DATA)
 

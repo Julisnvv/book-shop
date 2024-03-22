@@ -16,12 +16,16 @@ export function Modal (props: ModalProps): JSX.Element {
           <h3 className={style.modalTitle}>{props.title}</h3>
           <img
             src={close}
-            alt="close"
+            alt='close'
             onClick={props.onToggle}
             style={{ width: '30px', height: '30px', cursor: 'pointer' }}
           />
         </div>
-        <img className={style.modalImage} src={imageUrl} alt="modalImage" />
+        <img
+          src={imageUrl}
+          alt='modalImage'
+          className={style.modalImage}
+        />
         <p className={style.modalSubtitle}>{props.subtitle}</p>
       </div>
     </div>

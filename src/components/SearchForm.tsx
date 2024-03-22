@@ -7,7 +7,7 @@ export function SearchForm (): JSX.Element {
   // Hooks
   const { query: queryCurrent, page: pageCurrent } = useParams()
   const [query, setQuery] = useState(queryCurrent || '')
-  const [page, setPage] = useState(pageCurrent)
+  const [page, setPage] = useState(pageCurrent || '1')
   const navigate = useNavigate()
 
   // Methods
@@ -26,16 +26,16 @@ export function SearchForm (): JSX.Element {
   return (
     <form onSubmit={handleSubmit} className={style.form}>
       <input
-        type="search"
-        placeholder="Search..."
+        type='search'
+        placeholder='Search...'
         className={style.input}
         value={query}
         onChange={handleChange}
       />
-      <button type="submit" className={style.button}>
+      <button type='submit' className={style.button}>
         <img
           src={magnifyingGlass}
-          alt="magnifying glass"
+          alt='magnifying glass'
           style={{ width: '20px', height: '20px' }}
         />
       </button>

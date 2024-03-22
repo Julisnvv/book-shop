@@ -1,6 +1,6 @@
 export function parsePrice (price: string): number {
   const formattedPrice = price.replace('$', '')
-  return parseFloat(formattedPrice)
+  return Number(formattedPrice)
 }
 
 export function calculateTotalCost (basketBooks: { price: string }[]): number {

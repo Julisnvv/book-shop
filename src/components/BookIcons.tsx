@@ -8,8 +8,8 @@ import inBasket from '../img/in-basket.svg'
 
 export function BookIcons (props: BooksNew): JSX.Element {
   // Hooks
-  const [isFavorite, setIsFavorite] = useState(false)
-  const [isBasket, setIsBasket] = useState(false)
+  const [isFavorite, setIsFavorite] = useState<boolean>(false)
+  const [isBasket, setIsBasket] = useState<boolean>(false)
 
   useEffect(() => {
     checkLocalStorageData(props, setIsFavorite, setIsBasket)

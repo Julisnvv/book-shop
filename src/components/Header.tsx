@@ -26,24 +26,26 @@ export function Header (): JSX.Element {
         </NavLink>
         <SearchForm />
         <div className={style.userMenu}>
-          <NavLink to="/favorite">
+          <NavLink to='/favorite'>
             <img
               src={favorite}
-              alt="favorite"
-              className={style.icon}/>
+              alt='favorite'
+              className={style.icon}
+            />
           </NavLink>
-          <NavLink to="/basket">
+          <NavLink to='/basket'>
             <img
               src={basket}
-              alt="basket"
-              className={style.icon}/>
+              alt='basket'
+              className={style.icon}
+            />
           </NavLink>
           <select
             className={style.select}
-            name="language"
+            name='language'
             onChange={toggleLang}>
-              <option value="en">English</option>
-              <option value="ru">Русский</option>
+              <option value='en'>English</option>
+              <option value='ru'>Русский</option>
           </select>
           <Menu />
         </div>

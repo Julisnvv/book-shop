@@ -13,13 +13,13 @@ export function FavoriteBook ({ book, handleDeleteClick, handleAddToBasketClick 
         <div className={style.iconContainer}>
           <img
             src={close}
-            alt="close"
+            alt='close'
             onClick={() => handleDeleteClick(book.isbn13)}
             style={{ width: '30px', height: '30px', cursor: 'pointer' }}
           />
           <img
             src={basket}
-            alt="basket"
+            alt='basket'
             onClick={() => handleAddToBasketClick(book.isbn13)}
             style={{ width: '30px', height: '30px', cursor: 'pointer', marginBottom: '30px' }}
           />

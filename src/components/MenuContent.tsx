@@ -17,13 +17,13 @@ export function MenuContent (props: MenuProps): JSX.Element {
   // Template
   return (
     <div className={`${style.content} ${props.isOpen ? style.isOpen : ''}`}>
-      <NavLink to="/" className={style.link} onClick={handleLinkClick}>
+      <NavLink to='/' className={style.link} onClick={handleLinkClick}>
         {languages[language as keyof typeof languages].menuHamburger.mainPage}
       </NavLink>
-      <NavLink to="/favorite" className={style.link} onClick={handleLinkClick}>
+      <NavLink to='/favorite' className={style.link} onClick={handleLinkClick}>
         {languages[language as keyof typeof languages].menuHamburger.favoritePage}
       </NavLink>
-      <NavLink to="/basket" className={style.link} onClick={handleLinkClick}>
+      <NavLink to='/basket' className={style.link} onClick={handleLinkClick}>
         {languages[language as keyof typeof languages].menuHamburger.basketPage}
       </NavLink>
     </div>

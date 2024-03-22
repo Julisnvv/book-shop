@@ -5,7 +5,7 @@ import { languageReducer } from './language-slice'
 import { booksReducer, FETCH_NEW_DATA, fetchNewDataSaga } from './books-slice'
 import { imagePreviewReducer } from './image-preview-slice'
 
-// Watcher
+// Watcher Saga
 function * sagas () {
   yield takeEvery(FETCH_NEW_DATA, fetchNewDataSaga)
 }

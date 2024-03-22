@@ -12,7 +12,7 @@ export function BasketBook ({ book, handleDeleteClick }: BasketBookProps): JSX.E
         <div className={style.iconContainer}>
           <img
             src={close}
-            alt="close"
+            alt='close'
             onClick={() => handleDeleteClick(book.isbn13)}
             style={{ width: '30px', height: '30px', cursor: 'pointer' }}
           />

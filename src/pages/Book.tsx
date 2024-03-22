@@ -16,7 +16,7 @@ export function BookPage (): JSX.Element {
     <>
       <img
         src={back}
-        alt="back"
+        alt='back'
         style={{ width: '30px', height: '30px', cursor: 'pointer', marginBottom: '20px' }}
         onClick={handleGoBack}
       />

@@ -18,7 +18,7 @@ export function Menu (): JSX.Element {
       <div className={style.imageMenu}>
         <img
           src={burgerMenu}
-          alt="menu"
+          alt='menu'
           onClick={toggle}
           style={{ width: '25px', height: '25px' }}
         />

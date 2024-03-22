@@ -16,8 +16,6 @@ export function BasketPage (): JSX.Element {
   const dispatch = useDispatch<AppDispatch>()
   const language = useSelector((state: RootState) => state.language.value)
   const [deletedBooks, setDeletedBooks] = useState<string[]>([])
-
-  // Variables
   const basketBooks = getBasketBooks() as Book[]
   const totalCost = calculateTotalCost(basketBooks)
 

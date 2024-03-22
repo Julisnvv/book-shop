@@ -8,7 +8,7 @@ import { Modal } from './Modal'
 export function BookImage (props: BooksNew): JSX.Element {
   // Hooks
   const dispatch = useDispatch<AppDispatch>()
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState<boolean>(false)
 
   // Methods
   function toggle (): void {
@@ -25,7 +25,7 @@ export function BookImage (props: BooksNew): JSX.Element {
     <>
       <img
         src={props.image}
-        alt="book"
+        alt='book'
         style={{ cursor: 'pointer', height: '100%', width: '100%' }}
         onClick={handleClickImage}
       />

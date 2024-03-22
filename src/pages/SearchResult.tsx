@@ -15,7 +15,7 @@ export function SearchResultPage (): JSX.Element {
   const dispatch = useDispatch<AppDispatch>()
   const { query, page: pageNumberCurrent } = useParams<{query: string, page: string}>()
   const { searchData, pagesCounter } = useSelector((state: RootState) => state.books)
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
   const language = useSelector((state: RootState) => state.language.value)
 
   useEffect(() => {
@@ -35,7 +35,6 @@ export function SearchResultPage (): JSX.Element {
         <Card key={book.isbn13} {...book} />
       ))
     }
-
     return <EmptyContent text={languages[language as keyof typeof languages].searchPage.emptyText} />
   }
 
